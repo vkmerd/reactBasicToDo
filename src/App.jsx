@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 function App() {
   const [input, setInput] = useState('')
   const [tasks, setTasks] = useState([])
+  const [editingTaskId, setEditingTaskId] = useState(null);
 
   const addTask = (e) => {
     e.preventDefault();
@@ -26,8 +27,17 @@ function App() {
   }
 
   const editTask = (taskId) => {
-    const prompt = prompt("Düzenlemek istediğiniz text i girin")    
+    const updateText = prompt("Düzenlenecek Metni Girin")
+   if(updateText === null || updateText ===``){return;}
+   const state = tasks.map(task => task.id === taskId ? text: updateText)
+   console.log(state);
+
+    //  const state=  tasks.map(task=> taskId === editingTaskId ? { ...task, text: updatedText } : task)
+    // console.log(state);
+    // setEditingTaskId(null)
+
   }
+  
 
   return (
     <>
