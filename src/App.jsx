@@ -25,6 +25,10 @@ function App() {
     setTasks(filteredTask)
   }
 
+  const editTask = (taskId) => {
+    const prompt = prompt("Düzenlemek istediğiniz text i girin")    
+  }
+
   return (
     <>
       <form onSubmit={addTask}>
@@ -36,6 +40,7 @@ function App() {
         {tasks.map(task => <li key={task.id}>
           {task.text}
           <button onClick={() => deleteTask(task.id)}>Sil</button>
+          <button onClick={() => editTask(task.id)}>Düzenle</button>
         </li>)}
       </ul>
     </>
