@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 function App() {
   const [input, setInput] = useState('')
   const [tasks, setTasks] = useState([])
-  const [editingTaskId, setEditingTaskId] = useState(null);
 
   const addTask = (e) => {
     e.preventDefault();
@@ -17,9 +16,7 @@ function App() {
     setInput("")
   }
 
-  useEffect(() => {
-    console.log(tasks)
-  },[addTask])
+ 
 
   const deleteTask = (taskId) => {
     const filteredTask = tasks.filter(task => task.id !== taskId )
@@ -27,15 +24,19 @@ function App() {
   }
 
   const editTask = (taskId) => {
+    console.log(taskId)
     const updateText = prompt("Düzenlenecek Metni Girin")
-   if(updateText === null || updateText ===``){return;}
-   const state = tasks.map(task => task.id === taskId ? text: updateText)
-   console.log(state);
+   if(updateText === null || updateText ===``){return alert("düzgün metin gir");}
+    
+   
+    const updatedTasks = tasks.map(task => {
+      if (task.id === taskId) {
+        return { ...task, text: updateText };
+      }
+      return task;
+    });
 
-    //  const state=  tasks.map(task=> taskId === editingTaskId ? { ...task, text: updatedText } : task)
-    // console.log(state);
-    // setEditingTaskId(null)
-
+    setTasks(updatedTasks);
   }
   
 
